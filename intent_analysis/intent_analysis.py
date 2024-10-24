@@ -11,7 +11,7 @@ pretrained_model_path = '../bert-base-chinese'
 def read_data(file_path):
    with open(file_path, 'r', encoding='utf-8') as f:
        for line in f:
-           text, labels = line.strip().split('\t')
+           text, labels = line.strip().split('****')
            labels = labels.split(',')
            yield {'text': text, 'labels': labels}
 
@@ -158,6 +158,6 @@ model.load_dict(paddle.load('bert_multi_intent_recognition_model.pdparams'))
 model.eval()
 
 # 示例文本推理
-text = "我最近更换了电器，电费却没有减少，这是为什么？"
+text = "分析了当前在线教育市场的竞争格局和发展趋势"
 prediction = predict(text, model, tokenizer, label_map)
 print(f"Predicted labels: {prediction}")
